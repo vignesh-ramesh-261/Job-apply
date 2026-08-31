@@ -327,6 +327,93 @@ a {
   line-height: 1;
 }
 
+/* ─── QUICK LINKS ──────────────────────────────────────────────── */
+.quick-links-section {
+  padding: 20px 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.quick-links-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.quick-links-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.quick-links-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.quick-link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.quick-link-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.quick-link-logo {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.quick-link-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-link-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-link-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.quick-link-arrow {
+  font-size: 18px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
 /* ─── COMPANIES STRIP ──────────────────────────────────────────── */
 .companies-strip {
   padding: 12px 0;
@@ -379,6 +466,22 @@ a {
 
 .company-chip .chip-logo {
   font-size: 16px;
+}
+
+.company-chip.direct-link {
+  border-style: dashed;
+}
+
+.company-chip.direct-link:hover {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.chip-external::after {
+  content: "";
+  font-size: 10px;
+  margin-left: 2px;
+  opacity: 0.6;
 }
 
 /* ─── LOADING STATE ────────────────────────────────────────────── */

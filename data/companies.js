@@ -216,6 +216,121 @@ module.exports = [
     careerUrl: "https://www.zf.com/global/en/careers/",
     focus: "Automotive embedded, autonomous driving, firmware Linux"
   },
+  // ─── MORE SEMICONDUCTOR COMPANIES ─────────────────────────────
+  {
+    name: "Lattice Semiconductor",
+    logo: "🔲",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.latticesemi.com/Careers",
+    focus: "FPGA, CPLD, embedded programmable logic, low-power FPGA"
+  },
+  {
+    name: "onsemi",
+    logo: "",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.onsemi.com/about/careers",
+    focus: "Power semiconductors, automotive, embedded power management"
+  },
+  {
+    name: "CEVA",
+    logo: "🧠",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.ceva-dsp.com/company/careers/",
+    focus: "DSP cores, AI accelerators, embedded IP, signal processing"
+  },
+  {
+    name: "Qorvo",
+    logo: "📡",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.qorvo.com/company/careers",
+    focus: "RF semiconductors, embedded connectivity, 5G, IoT"
+  },
+  {
+    name: "Nuvoton Technology",
+    logo: "🔹",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.nuvoton.com/eng/about/careers/",
+    focus: "MCU, audio ICs, embedded controllers, cloud IoT"
+  },
+  {
+    name: "GigaDevice",
+    logo: "💾",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.gigadevice.com/careers/",
+    focus: "Flash memory, MCU (GD32), embedded storage, RISC-V"
+  },
+  {
+    name: "Realtek Semiconductor",
+    logo: "",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.realtek.com/en/careers",
+    focus: "Networking SoCs, audio codecs, embedded connectivity"
+  },
+  {
+    name: "Denso",
+    logo: "",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.denso.com/global/en/career/",
+    focus: "Automotive embedded, ECUs, ADAS, autonomous driving"
+  },
+  {
+    name: "Valeo",
+    logo: "🔵",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.valeo.com/en/careers/",
+    focus: "Automotive embedded, ADAS, sensors, driver assistance"
+  },
+  {
+    name: "Magna International",
+    logo: "⚙️",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.magna.com/careers",
+    focus: "Automotive embedded, ADAS, body control, powertrain"
+  },
+  {
+    name: "Keysight Technologies",
+    logo: "📊",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://jobs.keysight.com",
+    focus: "Test & measurement, embedded test systems, RF/EMC"
+  },
+  {
+    name: "NI (National Instruments)",
+    logo: "🔬",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.ni.com/en-us/about-ni/careers.html",
+    focus: "Embedded test, LabVIEW, PXI, data acquisition"
+  },
+  {
+    name: "ABB",
+    logo: "🏭",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://new.abb.com/careers",
+    focus: "Industrial automation, embedded control, robotics, drives"
+  },
+  {
+    name: "Rockwell Automation",
+    logo: "🏗️",
+    ats: "direct",
+    slug: "",
+    careerUrl: "https://www.rockwellautomation.com/en-us/company/careers.html",
+    focus: "Industrial automation, PLC, embedded control, IIoT"
+  },
+
+  // ─── IoT / Wireless ───────────────────────────────────────────
   {
     name: "Espressif Systems",
     logo: "📶",

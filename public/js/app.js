@@ -170,9 +170,10 @@ async function loadCompanies() {
     
     // Populate company chips
     elements.companyScroll.innerHTML = companies.map(c => `
-      <div class="company-chip" data-company="${c.name}">
+      <div class="company-chip ${c.ats === 'direct' ? 'direct-link' : ''}" data-company="${c.name}" title="${c.ats === 'direct' ? 'Opens career page' : 'Filter jobs'}">
         <span class="chip-logo">${c.logo}</span>
         ${c.name}
+        ${c.ats === 'direct' ? '<span class="chip-external"></span>' : ''}
       </div>
     `).join('');
     
@@ -180,6 +181,14 @@ async function loadCompanies() {
     elements.companyScroll.querySelectorAll('.company-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         const company = chip.getAttribute('data-company');
+        const companyData = companies.find(c => c.name === company);
+        
+        // If company has no API jobs (direct link), open career page directly
+        if (companyData && companyData.ats === 'direct') {
+          window.open(companyData.careerUrl, '_blank', 'noopener');
+          return;
+        }
+        
         if (elements.companyFilter.value === company) {
           elements.companyFilter.value = '';
           chip.classList.remove('active');
