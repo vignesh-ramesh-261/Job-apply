@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobHunter — Embedded Systems Job Aggregator</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-icon">🎯</span>
+          <h1>JobHunter</h1>
+          <span class="badge" id="jobCount">0 jobs</span>
+          <span class="subtitle">Embedded Systems</span>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost" id="refreshBtn" title="Refresh all jobs">
+            <span class="refresh-icon">↻</span> Refresh
+          </button>
+          <button class="btn btn-ghost" id="bookmarksBtn" title="View saved jobs">
+            ★ Saved <span class="bookmark-count" id="bookmarkCount">0</span>
+          </button>
+          <button class="btn btn-ghost" id="themeToggle" title="Toggle theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search & Filters -->
+  <section class="filters-section">
+    <div class="container">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search: embedded, firmware, BSP, RTOS, Linux kernel, AUTOSAR, driver, C/C++..." autocomplete="off">
+        <button class="clear-search" id="clearSearch" style="display:none;">✕</button>
+      </div>
+      <div class="filter-row">
+        <div class="filter-group">
+          <label>Location</label>
+          <select id="locationFilter">
+            <option value="">All Locations</option>
+            <option value="remote">🌍 Remote</option>
+            <optgroup label="🇮🇳 India">
+              <option value="bangalore">Bangalore</option>
+              <option value="hyderabad">Hyderabad</option>
+              <option value="pune">Pune</option>
+              <option value="chennai">Chennai</option>
+              <option value="noida">Noida</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi / NCR</option>
+              <option value="kochi">Kochi</option>
+              <option value="india">All India</option>
+            </optgroup>
+            <optgroup label="🌏 Asia">
+              <option value="singapore">Singapore</option>
+              <option value="taipei">Taipei</option>
+              <option value="shanghai">Shanghai</option>
+              <option value="tokyo">Tokyo</option>
+              <option value="seoul">Seoul</option>
+            </optgroup>
+            <optgroup label="🇺🇸 United States">
+              <option value="san diego">San Diego</option>
+              <option value="san jose">San Jose</option>
+              <option value="santa clara">Santa Clara</option>
+              <option value="austin">Austin</option>
+              <option value="seattle">Seattle</option>
+              <option value="boston">Boston</option>
+              <option value="irvine">Irvine</option>
+              <option value="portland">Portland</option>
+              <option value="boulder">Boulder</option>
+              <option value="allentown">Allentown</option>
+            </optgroup>
+            <optgroup label="🇪🇺 Europe">
+              <option value="cambridge, uk">Cambridge, UK</option>
+              <option value="london">London</option>
+              <option value="munich">Munich</option>
+              <option value="eindhoven">Eindhoven</option>
+              <option value="grenoble">Grenoble</option>
+              <option value="dublin">Dublin</option>
+              <option value="malmö">Malmö</option>
+              <option value="trondheim">Trondheim</option>
+              <option value="tel aviv">Tel Aviv</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Experience</label>
+          <select id="experienceFilter">
+            <option value="">All Experience</option>
+            <option value="Intern">Intern / Trainee</option>
+            <option value="Fresher">Fresher / Entry-Level</option>
+            <option value="Mid-Level">Mid-Level (2-5 yrs)</option>
+            <option value="Senior">Senior (5-10 yrs)</option>
+            <option value="Lead/Staff">Lead / Staff / Principal</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Department</label>
+          <select id="departmentFilter">
+            <option value="">All Departments</option>
+            <option value="firmware">Firmware</option>
+            <option value="platform software">Platform Software / BSP</option>
+            <option value="embedded software">Embedded Software</option>
+            <option value="rtos">RTOS / Real-Time</option>
+            <option value="automotive">Automotive</option>
+            <option value="silicon">Silicon / SoC</option>
+            <option value="ai">AI / Edge Computing</option>
+            <option value="connectivity">Connectivity / Wireless</option>
+            <option value="verification">Verification / Tools</option>
+            <option value="aerospace">Aerospace</option>
+            <option value="signal">Signal Processing / DSP</option>
+            <option value="robotics">Robotics</option>
+            <option value="security">Security</option>
+            <option value="industrial">Industrial / IoT</option>
+            <option value="power">Power Electronics</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Company</label>
+          <select id="companyFilter">
+            <option value="">All Companies</option>
+          </select>
+        </div>
+        <div class="filter-group filter-checkbox">
+          <label>
+            <input type="checkbox" id="remoteOnly"> 
+            Remote Only
+          </label>
+        </div>
+      </div>
+      <div class="active-filters" id="activeFilters"></div>
+    </div>
+  </section>
+
+  <!-- Company Quick Filters -->
+  <section class="companies-strip">
+    <div class="container">
+      <div class="company-scroll" id="companyScroll">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Loading State -->
+      <div class="loading-state" id="loadingState">
+        <div class="spinner"></div>
+        <p>Fetching jobs from company career sites...</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-text" id="progressText">Connecting to ATS platforms...</p>
+      </div>
+
+      <!-- Jobs Grid -->
+      <div class="jobs-section" id="jobsSection" style="display:none;">
+        <div class="jobs-header">
+          <h2 id="resultsTitle">All Open Positions</h2>
+          <div class="sort-controls">
+            <button class="sort-btn active" data-sort="newest">Newest</button>
+            <button class="sort-btn" data-sort="company">Company A-Z</button>
+            <button class="sort-btn" data-sort="title">Title A-Z</button>
+          </div>
+        </div>
+        <div class="jobs-list" id="jobsList">
+          <!-- Jobs populated dynamically -->
+        </div>
+        <div class="load-more" id="loadMore" style="display:none;">
+          <button class="btn btn-primary" id="loadMoreBtn">Load More Jobs</button>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <span class="empty-icon">🔍</span>
+        <h3>No jobs found</h3>
+        <p>Try adjusting your filters or search terms</p>
+        <button class="btn btn-primary" id="resetFilters">Reset Filters</button>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-state" id="errorState" style="display:none;">
+        <span class="error-icon">⚠️</span>
+        <h3>Something went wrong</h3>
+        <p id="errorMessage">Unable to fetch jobs. Please try again.</p>
+        <button class="btn btn-primary" id="retryBtn">Try Again</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bookmarks Modal -->
+  <div class="modal" id="bookmarksModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>★ Saved Jobs</h2>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+      <div class="modal-body" id="bookmarksList">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="exportBookmarks">📋 Export to Clipboard</button>
+        <button class="btn btn-danger" id="clearBookmarks">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        JobHunter aggregates listings from <span id="footerCompanyCount">0</span> embedded systems company career pages. 
+        Data is cached for 30 minutes. All links open on the official company sites.
+      </p>
+      <p class="footer-note">
+        Built to save you from opening 30+ browser tabs. Find firmware, BSP, RTOS, automotive & embedded roles in one place! 🎯
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
