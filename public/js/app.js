@@ -16,6 +16,7 @@ const elements = {
   experienceFilter: document.getElementById('experienceFilter'),
   companyFilter: document.getElementById('companyFilter'),
   remoteOnly: document.getElementById('remoteOnly'),
+  liveOnly: document.getElementById('liveOnly'),
   jobsList: document.getElementById('jobsList'),
   jobsSection: document.getElementById('jobsSection'),
   loadingState: document.getElementById('loadingState'),
@@ -273,8 +274,10 @@ function applyFilters() {
   const experience = elements.experienceFilter.value;
   const company = elements.companyFilter.value;
   const remote = elements.remoteOnly.checked;
+  const liveOnly = elements.liveOnly.checked;
   
   filteredJobs = allJobs.filter(job => {
+    if (liveOnly && !job._hasApi) return false;
     if (search && !(
       job.title.toLowerCase().includes(search) ||
       job.company.toLowerCase().includes(search) ||
@@ -339,6 +342,7 @@ function renderActiveFilters() {
   if (elements.experienceFilter.value) tags.push({ label: `📊 ${elements.experienceFilter.value}`, clear: () => { elements.experienceFilter.value = ''; applyFilters(); } });
   if (elements.companyFilter.value) tags.push({ label: `${getCompanyLogo(elements.companyFilter.value)} ${elements.companyFilter.value}`, clear: () => { elements.companyFilter.value = ''; applyFilters(); } });
   if (elements.remoteOnly.checked) tags.push({ label: '🌍 Remote Only', clear: () => { elements.remoteOnly.checked = false; applyFilters(); } });
+  if (elements.liveOnly.checked) tags.push({ label: '🔌 Live Jobs Only', clear: () => { elements.liveOnly.checked = false; applyFilters(); } });
   
   elements.activeFilters.innerHTML = tags.map((tag, i) => `
     <span class="filter-tag">
@@ -377,11 +381,12 @@ function renderJobs() {
   const toShow = filteredJobs.slice(0, displayCount);
   
   elements.jobsList.innerHTML = toShow.map((job, i) => `
-    <div class="job-card" style="animation-delay: ${Math.min(i * 20, 500)}ms">
+    <div class="job-card ${job._hasApi ? 'has-api' : ''}" style="animation-delay: ${Math.min(i * 20, 500)}ms">
       <div class="job-logo">${job.logo || '💼'}</div>
       <div class="job-card-content">
         <div class="job-card-top">
           <span class="job-company">${escapeHtml(job.company)}</span>
+          ${job._hasApi ? '<span class="api-badge" title="Fetched via live API">🔌 Live</span>' : '<span class="api-badge direct" title="Direct career page link"> Direct</span>'}
           ${job.experience && job.experience !== 'All Levels' ? `<span class="job-exp ${job.experience.toLowerCase().replace(/[\s\/]/g, '-')}">${escapeHtml(job.experience)}</span>` : ''}
         </div>
         <div class="job-title" title="${escapeHtml(job.title)}">${escapeHtml(job.title)}</div>
@@ -439,6 +444,7 @@ elements.departmentFilter.addEventListener('change', applyFilters);
 elements.experienceFilter.addEventListener('change', applyFilters);
 elements.companyFilter.addEventListener('change', applyFilters);
 elements.remoteOnly.addEventListener('change', applyFilters);
+elements.liveOnly.addEventListener('change', applyFilters);
 
 elements.loadMoreBtn.addEventListener('click', () => {
   displayCount += ITEMS_PER_PAGE;
@@ -452,6 +458,7 @@ elements.resetFilters.addEventListener('click', () => {
   elements.experienceFilter.value = '';
   elements.companyFilter.value = '';
   elements.remoteOnly.checked = false;
+  elements.liveOnly.checked = false;
   applyFilters();
 });
 
