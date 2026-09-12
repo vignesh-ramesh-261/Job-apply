@@ -16,6 +16,9 @@ module.exports = [
   // ══════════════════════════════════════════════════════════════
   // LIVE API COMPANIES (confirmed working)
   // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // LIVE API COMPANIES (Workday + SmartRecruiters)
+  // ═══════════════════════════════════════════════════════════════
   {
     name: "NVIDIA",
     logo: "",
@@ -27,7 +30,7 @@ module.exports = [
   },
   {
     name: "Intel",
-    logo: "💠",
+    logo: "",
     ats: "workday",
     workdayTenant: "intel", workdaySite: "External", workdayDc: "wd1",
     slug: "",
@@ -59,6 +62,96 @@ module.exports = [
     slug: "BoschGroup",
     careerUrl: "https://www.bosch.com/careers/",
     focus: "IoT, industrial embedded, sensors, automation"
+  },
+  {
+    name: "Qualcomm",
+    logo: "📡",
+    ats: "workday",
+    workdayTenant: "qualcomm", workdaySite: "External", workdayDc: "wd12",
+    slug: "",
+    careerUrl: "https://careers.qualcomm.com",
+    focus: "Embedded Linux, BSP, drivers, Android, wireless, SoCs, IoT"
+  },
+  {
+    name: "NXP Semiconductors",
+    logo: "🔵",
+    ats: "workday",
+    workdayTenant: "nxp", workdaySite: "careers", workdayDc: "wd3",
+    slug: "",
+    careerUrl: "https://www.nxp.com/about-nxp/careers",
+    focus: "IoT, MCU, embedded Linux, wireless, secure connectivity"
+  },
+  {
+    name: "Marvell Technology",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "marvell", workdaySite: "MarvellCareers", workdayDc: "wd1",
+    slug: "",
+    careerUrl: "https://careers.marvell.com",
+    focus: "Storage, networking SoCs, embedded processors, Ethernet"
+  },
+  {
+    name: "Micron Technology",
+    logo: "💾",
+    ats: "workday",
+    workdayTenant: "micron", workdaySite: "External", workdayDc: "wd1",
+    slug: "",
+    careerUrl: "https://jobs.micron.com",
+    focus: "Memory (DRAM, NAND, NOR Flash), embedded storage"
+  },
+  {
+    name: "Lattice Semiconductor",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "latticesemi", workdaySite: "latticesemiconductorscareers", workdayDc: "wd5",
+    slug: "",
+    careerUrl: "https://www.latticesemi.com/Careers",
+    focus: "FPGA, CPLD, embedded programmable logic, low-power FPGA"
+  },
+  {
+    name: "Cadence Design Systems",
+    logo: "🔸",
+    ats: "workday",
+    workdayTenant: "cadence", workdaySite: "External_Careers", workdayDc: "wd1",
+    slug: "",
+    careerUrl: "https://www.cadence.com/en_US/company/careers.html",
+    focus: "Semiconductor IP, embedded/SoC ecosystem, EDA tools"
+  },
+  {
+    name: "Silicon Labs",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "silabs", workdaySite: "SiliconLabsCareers", workdayDc: "wd1",
+    slug: "",
+    careerUrl: "https://www.silabs.com/company/careers",
+    focus: "IoT SoCs, wireless MCU, Zigbee, Thread, BLE, embedded"
+  },
+  {
+    name: "Rockwell Automation",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "rockwellautomation", workdaySite: "External_Rockwell_Automation", workdayDc: "wd1",
+    slug: "",
+    careerUrl: "https://www.rockwellautomation.com/en-us/company/careers.html",
+    focus: "Industrial automation, PLC, embedded control, IIoT"
+  },
+  {
+    name: "HPE (Hewlett Packard Enterprise)",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "hpe", workdaySite: "Jobsathpe", workdayDc: "wd5",
+    slug: "",
+    careerUrl: "https://jobs.hpe.com",
+    focus: "Enterprise networking, servers, embedded firmware, storage"
+  },
+  {
+    name: "Allegro MicroSystems",
+    logo: "",
+    ats: "workday",
+    workdayTenant: "allegromicro", workdaySite: "AllegroCareers", workdayDc: "wd5",
+    slug: "",
+    careerUrl: "https://www.allegromicro.com/en/company/careers",
+    focus: "Power ICs, motor drivers, sensors, embedded power management"
   },
 
   // ═══════════════════════════════════════════════════════════════
